@@ -3,23 +3,30 @@ import { CSS } from '@dnd-kit/utilities';
 import { useSortable } from '@dnd-kit/sortable';
 import { ReactComponent as DraggableIcon } from '../img/draggable.svg';
 import clsx from 'clsx';
-import { Question } from './models';
+import { Category, ItemType, Question } from './models';
 
 type SortableItemProps = PropsWithChildren<{
    item: Question;
-   categoryId: number;
+   categoryId?: string;
+   itemType?: ItemType;
 }>;
 
-export const SortableItem = ({ item, categoryId }: SortableItemProps) => {
-   const { listeners, setNodeRef, transform, transition, isDragging } =
+export const SortableItem = ({
+   item,
+   categoryId,
+   itemType,
+}: SortableItemProps) => {
+   const { listeners, setNodeRef, isDragging, transform, transition } =
       useSortable({
          id: item.id,
-         data: { categoryId },
-         transition: null,
+         data: { categoryId, itemType },
       });
 
    return (
-      <div ref={setNodeRef} className="flex gap-4 items-center justify-start">
+      <div
+         ref={setNodeRef}
+         className="flex gap-4 items-center justify-start bg-white"
+      >
          <DraggableIcon
             className={clsx(
                'h-4 w-4',

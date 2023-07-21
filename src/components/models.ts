@@ -4,14 +4,14 @@ export enum ItemType {
 }
 
 export interface Question {
-   id: number;
+   id: string;
    label: string;
    type: ItemType.QUESTION;
-   categoryId: number;
+   categoryId: string;
 }
 
 export interface Category {
-   id: number;
+   id: string;
    label: string;
    type: ItemType.CATEGORIE;
 }
